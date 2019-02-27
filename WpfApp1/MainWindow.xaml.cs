@@ -31,14 +31,7 @@ namespace WpfApp1
             RoleComboBox.ItemsSource = db.Roles;
             RoleComboBox.SelectedIndex = 0;
 
-            DataTable table = new DataTable();
 
-            table.Columns.Add("Id", typeof(int));
-            table.Columns.Add("Username", typeof(string));
-            table.Columns.Add("Password", typeof(string));
-            table.Columns.Add("Role", typeof(string));
-
-            DbDataGrid.DataContext = table;
 
         }
 
@@ -55,7 +48,17 @@ namespace WpfApp1
 
         private void ReadButton_Click(object sender, RoutedEventArgs e)
         {
-            var list = db.read();
+            var sda = db.readMySqlDataAdapter();
+
+            DataSet ds = new DataSet();
+            sda.Fill(ds);
+            if (ds.Tables[0].Rows.Count > 0)
+            {
+
+                DbDataGrid.ItemsSource = ds.Tables[0].DefaultView;
+            }
+
+
         }
 
 

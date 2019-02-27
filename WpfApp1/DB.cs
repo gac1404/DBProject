@@ -1,9 +1,11 @@
 ﻿using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Windows;
 using MySql.Data.MySqlClient;
 
 
-class DBConnect
+class DBConnect: Window
 {
     private List<string> roles = new List<string>
     {
@@ -99,29 +101,16 @@ class DBConnect
         comm.ExecuteNonQuery();
     }
 
-    public List<Message> read()
-    {
-  
+    public MySqlDataAdapter readMySqlDataAdapter()
+    {  
         List<Message> messageList = new List<Message>();
 
         MySqlCommand command = connection.CreateCommand();
         command.CommandText = "SELECT * FROM `Users`";
+        MySqlDataAdapter sda = new MySqlDataAdapter(command);
+       
 
-        MySqlDataReader reader = command.ExecuteReader();
-
-        while(reader.Read())
-        {
-            Message msg = new Message();
-
-            msg.id       = reader.GetInt32(0);
-            msg.username = reader.GetString(1);
-            msg.password = reader.GetString(2);
-            msg.role     = reader.GetString(3);
-
-            messageList.Add(msg);
-        }
-
-        return messageList;
+        return sda;
     }
 
 }

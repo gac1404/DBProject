@@ -64,12 +64,6 @@
             </Button.RenderTransform>
         </Button>
         <DataGrid x:Name="DbDataGrid" HorizontalAlignment="Left" Height="134" Margin="240,246,0,0" VerticalAlignment="Top" Width="300" >
-            <DataGrid.Columns>
-            <DataGridTextColumn Header="ID"       Binding="{Binding XPath=tag1/.}" />
-            <DataGridTextColumn Header="Username" Binding="{Binding XPath=tag2/.}" />
-            <DataGridTextColumn Header="Password" Binding="{Binding XPath=tag3/.}" />
-            <DataGridTextColumn Header="Role"     Binding="{Binding XPath=tag3/.}" />
-        </DataGrid.Columns>
         </DataGrid>
     </Grid>
 </Window>
